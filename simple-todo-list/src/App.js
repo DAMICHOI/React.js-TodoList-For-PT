@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import TodoTemplate from './components/TodoTemplate';
 
 class App extends Component {
   render() {
     return (
       <div>
-        App
+        <TodoTemplate>todo App만들기</TodoTemplate>
       </div>
     );
   }
