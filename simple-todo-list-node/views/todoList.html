@@ -6,9 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="damiFTP" />
     <meta name="author" content="dami.choi" />
+
     <link rel="stylesheet" href="/css/all.min.css" />
     <link rel="stylesheet" href="/css/todoList.css" />
+    <script defer src="/js/all.min.js" ></script>
+    <script defer src="/js/jquery-3.4.1.min.js"></script>
+    <script defer src="/js/jquery-3.4.1.js"></script>
     <title>Simple Todo List</title>
+    <script type="text/javascript">
+      const insert = (data) => {
+        const todo = $(data).siblings("input");
+        $(".TodoListItem").parent().last().append($("<div/>").addClass("TodoListItem")
+                                          .append($("<div/>").addClass("checkbox").append($("<input/>").attr("type", "checkbox").attr("onclick", "toggle(this)")).append($("<div/>").addClass("text").text(todo.val())))
+                                          .append($("<div/>").addClass("remove").attr("onclick", "remove(this)").append($("<i/>").addClass("fas fa-minus-circle"))));
+        todo.val("");
+      }
+
+      const remove = (data) => {
+        $(data).parents("div.TodoListItem").remove();
+      }
+
+      const toggle = (data) => {
+        const checkbox = $(data).parents("div.checkbox");
+        $(data).is(":checked") ? checkbox.addClass("checked") : checkbox.removeClass("checked");
+      }
+    </script>
   </head>
   <body>
     <div>
@@ -17,17 +39,17 @@
         <div class="content">
           <form class="TodoInsert">
             <input placeholder="할 일을 입력하세요" />
-            <button type="submit">
+            <button type="button" onclick="insert(this)">
               <i class="fas fa-plus"></i>
             </button>
           </form>
           <%for (let i=0; i<todoLists.length; i++) {%>
           <div class="TodoListItem">
             <div class="checkbox<%=todoLists[i].checked ? ' checked' : ''%>">
-              <input type="checkbox" <%=todoLists[i].checked ? 'checked' : ''%> />
+              <input type="checkbox" <%=todoLists[i].checked ? 'checked' : ''%> onclick="toggle(this)" />
               <div class="text"><%=todoLists[i].text%></div>
             </div>
-            <div class="remove">
+            <div class="remove" onclick="remove(this)">
               <i class="fas fa-minus-circle"></i>
             </div>
           </div>
@@ -35,6 +57,5 @@
         </div>
       </div>
     </div>
-    <script defer src="/js/all.min.js" />
   </body>
 </html>
