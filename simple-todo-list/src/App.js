@@ -44,13 +44,13 @@ const App = () => {
   const nextId = useRef(3);
 
   const onInsert = useCallback(text => {
+    nextId.current += 1;
     const todo = {
       id: nextId.current,
       text,
       checked: false,
     };
     dispatch({ type: 'INSERT', todo });
-    nextId.current += 1;
   }, []);
 
   const onRemove = useCallback(id => {
