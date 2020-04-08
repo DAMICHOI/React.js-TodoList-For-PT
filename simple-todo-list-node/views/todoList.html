@@ -16,7 +16,7 @@
     <script type="text/javascript">
       const insert = (data) => {
         const todo = $(data).siblings("input");
-        $(".TodoListItem").parent().last().append($("<div/>").addClass("TodoListItem")
+        $(".TodoInsert").parent().last().append($("<div/>").addClass("TodoListItem")
                                           .append($("<div/>").addClass("checkbox").append($("<input/>").attr("type", "checkbox").attr("onclick", "toggle(this)")).append($("<div/>").addClass("text").text(todo.val())))
                                           .append($("<div/>").addClass("remove").attr("onclick", "remove(this)").append($("<i/>").addClass("fas fa-minus-circle"))));
         todo.val("");

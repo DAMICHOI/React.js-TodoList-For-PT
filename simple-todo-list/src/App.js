@@ -41,7 +41,7 @@ const App = () => {
   const [todos, dispatch] = useReducer(todoReducer, todoLists);
   // 고유값으로 사용될 id
   // ref를 사용하여 변수 담기
-  const nextId = useRef(3);
+  const nextId = useRef(todoLists.length);
 
   const onInsert = useCallback(text => {
     nextId.current += 1;
